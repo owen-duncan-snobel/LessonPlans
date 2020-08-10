@@ -21,7 +21,6 @@ module.exports = {
         background_color: fullConfig.theme.colors.white,
         theme_color: fullConfig.theme.colors.teal["400"],
         display: `minimal-ui`,
-        icon: `src/images/tailwind-icon.png`,
       },
     },
     {
@@ -36,6 +35,23 @@ module.exports = {
         ],
       },
     },
-    `gatsby-plugin-offline`,
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `images`,
+        path: `${__dirname}/src/images`,
+      },
+    },
+    {
+      resolve: 'gatsby-source-strapi',
+      options: {
+        apiURL: 'http://localhost:1337',
+        contentTypes: [ // List of the Content Types you want to be able to request from Gatsby.
+          'user'
+        ],
+        queryLimit: 1000,
+      },
+    },
+    'gatsby-plugin-offline',
   ],
 };
