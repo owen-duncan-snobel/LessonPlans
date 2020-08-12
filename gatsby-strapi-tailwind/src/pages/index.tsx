@@ -1,7 +1,9 @@
 import React from 'react';
-import Navigation from '../components/Header/navigation';
+import Navigation from '../components/navigation';
 
-const index = () => {
+
+const Index: React.FunctionComponent = () => {
+
   return (
     <div>
       <Navigation />
@@ -9,4 +11,4 @@ const index = () => {
   )
 }
 
-export default index;
+export default Index;
