@@ -1,0 +1,59 @@
+{
+  "kind": "collectionType",
+  "collectionName": "registrations",
+  "info": {
+    "name": "Registration"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "programName": {
+      "type": "string",
+      "unique": false,
+      "required": true
+    },
+    "barcode": {
+      "type": "integer",
+      "required": true,
+      "unique": true
+    },
+    "programTime": {
+      "type": "time",
+      "required": true
+    },
+    "dayOfWeek": {
+      "type": "enumeration",
+      "enum": [
+        "Mon",
+        "Tue",
+        "Wed",
+        "Thu",
+        "Fri",
+        "Sat",
+        "Sun"
+      ],
+      "required": true
+    },
+    "programStartDate": {
+      "type": "date",
+      "required": true
+    },
+    "complex": {
+      "type": "enumeration",
+      "enum": [
+        "Iroquios_Ridge_Community_Center",
+        "White_Oaks_Pool",
+        "Glen_Abbey_Community_Center",
+        "Centennial_Pool"
+      ],
+      "required": true
+    },
+    "numberClasses": {
+      "type": "integer",
+      "max": 50,
+      "required": true
+    }
+  }
+}
