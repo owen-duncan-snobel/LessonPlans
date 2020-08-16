@@ -10,15 +10,21 @@ const Navigation: React.FunctionComponent = () => {
                 LP
             </Link>
 
-            <span className="hidden sm:block font-bold">
-                <Link to="/" className="m-5">
-                    Home
+            {/** Navbar links */}
+            <nav>
+                <span className="hidden sm:block font-normal">
+                    <Link to="/" className="m-5" activeClassName="font-bold">
+                        Home
+                </Link>
+                    <Link to="/program-registration" className="m-5" activeClassName="font-bold">
+                        Program Registration
                 </Link>
 
-                <Link to="/lesson-plans" className="m-5">
-                    Lesson Plans
+                    <Link to="/aquatic-programs" className="m-5" activeClassName="font-bold">
+                        Aquatic Programs
                 </Link>
-            </span>
+                </span>
+            </nav>
         </header >
     )
 }
