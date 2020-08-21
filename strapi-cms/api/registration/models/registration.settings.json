@@ -54,6 +54,10 @@
       "type": "integer",
       "max": 50,
       "required": true
+    },
+    "program": {
+      "model": "program",
+      "via": "registrations"
     }
   }
 }
