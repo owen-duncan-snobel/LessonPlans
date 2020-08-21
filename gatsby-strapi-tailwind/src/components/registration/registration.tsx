@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import RegistrationLayout from './registrationLayout';
 import fetchRegistration from './fetchRegistration';
+import RegistrationSearchBar from './registration-search/registrationSearch';
 
-interface RegistrationData extends Array<Program> { }
+interface RegistrationData extends Array<ProgramRegistration> { }
 
-interface Program {
+interface ProgramRegistration {
     id: number,
     programName: string,
     barcode: number,
@@ -12,7 +13,16 @@ interface Program {
     dayOfWeek: string,
     programStartDate: string,
     complex: string,
-    numberClases: number,
+    program: Program
+    numberClasses: number,
+    created_at: string,
+    updated_at: string
+}
+
+interface Program {
+    id: number | null,
+    programName: string,
+    description: string,
     created_at: string,
     updated_at: string
 }
@@ -21,7 +31,7 @@ const Registration: React.FunctionComponent = () => {
     /**
      * * Default constructor with no data
      */
-    const [programs, setRegistration] = useState<RegistrationData>(
+    const [registrations, setRegistrations] = useState<RegistrationData>(
         [
             {
                 'id': 0,
@@ -31,38 +41,80 @@ const Registration: React.FunctionComponent = () => {
                 'dayOfWeek': '',
                 'programStartDate': '',
                 'complex': '',
-                'numberClases': 0,
+                'numberClasses': 0,
+                'program': {
+                    'id': null,
+                    'programName': '',
+                    'description': '',
+                    'created_at': '',
+                    'updated_at': ''
+                },
                 'created_at': '',
                 'updated_at': ''
             }
         ]
     )
 
+    //const [load, setLoad] = useState(false);
+    const [error, setError] = useState('');
+
     /**
-     *  * On update/change fetches programs data and updates setData state
+     *  * On update/change fetches registrations data and updates setData state
      */
     useEffect(() => {
         try {
-            fetchRegistration().then((res) => {
-                setRegistration(res.data)
-            }
-            )
+            /** 
+            *   * Set loading to be true for loading async request
+            */
+            //   setLoad(true);
+
+            /**
+             *  * Fetch Program Registration Data and ensure that the response is valid
+             */
+            fetchRegistration()
+                .then((res) => {
+                    if (res.status) {
+                        setRegistrations(res.data)
+                    } else {
+                        setError(res)
+                    }
+                })
+            /**
+             * * Set loading to be false for finished async request
+             */
+            //   setLoad(false);
         } catch (e) {
             console.log(e)
         }
     }, [])
 
     return (
-        <div className='flex flex-wrap justify-center w-screen'>
-            <table className="bg-red-500 w-5/6 sm:w-4/6">
-                {programs.map(program => {
+        <div className='flex flex-wrap justify-center w-screen gap-4'>
+            <div className='w-1/6'>
+                <RegistrationSearchBar />
+            </div>
+            <div className="w-4/6">
+                <p className=' text-md font-bold bg-red-500 text-gray-900 p-2'>Program</p>
+                {registrations.map(registration => {
                     return (
-                        <RegistrationLayout>
-                            {program}
+                        <RegistrationLayout
+                            key={registration.programName + '_' + registration.complex + '_' + registration.programStartDate}
+                            id={registration.id}
+                            programName={registration.programName}
+                            barcode={registration.barcode}
+                            programTime={registration.programName}
+                            dayOfWeek={registration.dayOfWeek}
+                            programStartDate={registration.programStartDate}
+                            complex={registration.complex}
+                            program={registration.program}
+                            numberClasses={registration.numberClasses}
+                            created_at={registration.created_at}
+                            updated_at={registration.updated_at}
+                        >
                         </RegistrationLayout>
                     )
                 })}
-            </table>
+            </div>
         </div>
     )
 }
