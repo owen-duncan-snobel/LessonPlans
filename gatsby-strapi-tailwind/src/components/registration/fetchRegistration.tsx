@@ -5,6 +5,10 @@ const fetchRegistration = async () => {
         method: 'GET',
         url: 'http://localhost:1337/registrations',
     })
+        .catch(err => {
+            console.log(err);
+            return err;
+        })
     return results;
 }
 export default fetchRegistration;
