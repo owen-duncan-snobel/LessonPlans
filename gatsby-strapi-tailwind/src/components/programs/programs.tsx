@@ -6,9 +6,8 @@ interface ProgramsData extends Array<Program> { }
 
 interface Program {
     id: number | null,
-    title: string,
+    programName: string,
     description: string,
-    author: string,
     created_at: string,
     updated_at: string
 }
@@ -21,9 +20,8 @@ const Programs: React.FunctionComponent = () => {
         [
             {
                 'id': null,
-                'title': '',
+                'programName': '',
                 'description': '',
-                'author': '',
                 'created_at': '',
                 'updated_at': ''
             }
@@ -38,7 +36,7 @@ const Programs: React.FunctionComponent = () => {
             const fetchPrograms = async (): Promise<void> => {
                 const results = await axios({
                     method: 'GET',
-                    url: 'http://localhost:1337/registrations',
+                    url: 'http://localhost:1337/programs',
                 })
                 setPrograms(results.data);
             }
@@ -53,7 +51,7 @@ const Programs: React.FunctionComponent = () => {
             {programs.map(program => {
                 return (
                     <ProgramsLayout>
-                        {`checking if this is ${program.title}`}
+                        {program.programName}
                     </ProgramsLayout>
                 )
             })}
