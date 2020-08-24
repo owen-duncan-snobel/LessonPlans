@@ -5,7 +5,7 @@ import Navigation from '../components/navigation';
 const Index: React.FunctionComponent = () => {
 
   return (
-    <div>
+    <div className='h-screen'>
       <Navigation />
     </div>
   )
