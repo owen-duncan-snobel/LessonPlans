@@ -4,6 +4,7 @@
   "version": "4.0.0",
   "author": "Taylor Bryant <taylor@bryant.io>",
   "dependencies": {
+    "@types/lodash": "^4.14.159",
     "axios": "^0.19.2",
     "gatsby": "2.24.47",
     "gatsby-plugin-manifest": "2.4.23",
@@ -15,6 +16,8 @@
     "gatsby-plugin-typescript-checker": "^1.1.1",
     "gatsby-source-filesystem": "^2.3.24",
     "gatsby-source-strapi": "0.0.12",
+    "lodash": "^4.17.20",
+    "moment": "^2.27.0",
     "prop-types": "15.7.2",
     "react": "16.13.1",
     "react-dom": "16.13.1",
