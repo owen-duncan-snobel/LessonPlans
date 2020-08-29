@@ -1,60 +1,48 @@
 import React, { useState, useEffect } from 'react';
 import ProgramsLayout from './programsLayout';
-import axios from 'axios';
+import useProgramData from './fetchPrograms';
 
 interface ProgramsData extends Array<Program> { }
 
 interface Program {
-    id: number | null,
-    programName: string,
-    description: string,
-    created_at: string,
-    updated_at: string
+    node: {
+        id: number,
+        programName: string,
+        description: string,
+        created_at: string,
+        updated_at: string,
+        category: {
+            id: number,
+            category: string
+        }
+    }
 }
 
-const Programs: React.FunctionComponent = () => {
+const Programs: React.FunctionComponent<{ programCategory: string }> = ({ programCategory }) => {
     /**
      * * Default constructor with no data
      */
-    const [programs, setPrograms] = useState<ProgramsData>(
-        [
-            {
-                'id': null,
-                'programName': '',
-                'description': '',
-                'created_at': '',
-                'updated_at': ''
-            }
-        ]
-    )
 
+    const programs: ProgramsData = useProgramData();
     /**
-     *  * On update/change fetches programs data and updates setData state
+     *  * useProgramData queries all programs, programCategory is a prop passed 
+     *  * that ensures that the category is for only the selected program aka. displays only
+     *  * 'aquatics', 'ice_sports', ... 
      */
-    useEffect(() => {
-        try {
-            const fetchPrograms = async (): Promise<void> => {
-                const results = await axios({
-                    method: 'GET',
-                    url: 'http://localhost:1337/programs',
-                })
-                setPrograms(results.data);
-            }
-            fetchPrograms();
-        } catch (e) {
-            console.log(e)
-        }
-    }, [])
-
+    const category = programs.filter(program => program.node.category.category === programCategory);
     return (
         <div className='flex flex-wrap justify-center  w-screen'>
-            {programs.map(program => {
-                return (
-                    <ProgramsLayout>
-                        {program.programName}
-                    </ProgramsLayout>
-                )
-            })}
+
+            {
+                category.map(program => {
+                    return (
+
+                        <ProgramsLayout
+                            data={program.node}
+                        />
+                    )
+                })
+            }
         </div>
     )
 }
