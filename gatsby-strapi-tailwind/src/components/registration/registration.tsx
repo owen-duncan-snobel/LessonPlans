@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import fetchRegistration from './fetchRegistration';
 import RegistrationSearchBar from './registration-search/registrationSearch';
 import RegistrationProgram from './registrationLayout';
-
 import _ from 'lodash';
 
 interface RegistrationData extends Array<ProgramRegistration> { }
@@ -23,7 +22,11 @@ interface ProgramRegistration {
     program: Program
     numberClasses: number,
     created_at: string,
-    updated_at: string
+    updated_at: string,
+    category: {
+        id: number,
+        category: string
+    }
 }
 
 /**
@@ -60,12 +63,16 @@ const Registration: React.FunctionComponent = () => {
                     'updated_at': ''
                 },
                 'created_at': '',
-                'updated_at': ''
+                'updated_at': '',
+                'category': {
+                    id: 0,
+                    category: ''
+                }
             }
         ]
     )
-    const [error, setError] = useState(false);
 
+    const [error, setError] = useState(false);
 
     /**
      *  * On update/change fetches registrations data and updates setData state
@@ -93,7 +100,6 @@ const Registration: React.FunctionComponent = () => {
         .entries()
         .value();
 
-
     return (
         <div className='flex flex-wrap justify-center w-screen gap-4'>
             <div className='w-1/6'>
@@ -108,7 +114,7 @@ const Registration: React.FunctionComponent = () => {
                         const programRegistrationAvailability = program[1];
                         const programDescription = programRegistrationAvailability[0].program.description;
                         return (
-                            <div className='flex justify-center mt-10'>
+                            <div className='flex justify-center mt-10 mb-10'>
                                 <div className='mr-20'>
                                     <p className='font-bold'>{programName}</p>
                                     <p>{programDescription}</p>
