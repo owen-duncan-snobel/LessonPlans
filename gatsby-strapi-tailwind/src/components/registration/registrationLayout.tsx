@@ -30,6 +30,14 @@ const RegistrationProgram: React.FunctionComponent<{ data: ProgramRegistration[]
 
     const [toggleProgram, setToggleProgram] = useState(false);
 
+    /**
+     * * ID zero refers to the prefetch / error on fetch
+     */
+    if (data[0].id === 0) {
+        return (
+            <div></div>
+        )
+    }
     return (
         < div >
             <button
