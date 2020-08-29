@@ -1,11 +1,20 @@
 import React from 'react';
-
-const ProgramsLayout: React.FunctionComponent = ({ children }) => {
+interface Data {
+    id: number,
+    programName: string,
+    description: string,
+    created_at: string,
+    updated_at: string,
+    category: {
+        id: number,
+        category: string
+    }
+}
+const ProgramsLayout: React.FunctionComponent<{ data: Data }> = ({ data }) => {
     return (
-        <div className='flex justify-center mt-40'>
-            <div className='text-center bg-red-500 w-64 m-2'>
-                {children}
-            </div>
+        <div className='bg-red-500 m-2 w-1/4 p-4'>
+            <p className='font-extrabold text-3xl text-center pb-3'>{data.programName}</p>
+            <p className='text-sm align-bottom relative inset-x-0 bottom-0'>{data.description.split(' ', 30).join(' ') + '...'} <a> read more</a></p>
         </div>
     )
 }
