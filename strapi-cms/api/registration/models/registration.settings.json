@@ -58,6 +58,11 @@
     "program": {
       "model": "program",
       "via": "registrations"
+    },
+    "category": {
+      "type": "component",
+      "repeatable": false,
+      "component": "category.category"
     }
   }
 }

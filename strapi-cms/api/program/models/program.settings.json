@@ -21,6 +21,11 @@
     "registrations": {
       "via": "program",
       "collection": "registration"
+    },
+    "category": {
+      "type": "component",
+      "repeatable": false,
+      "component": "category.category"
     }
   }
 }
