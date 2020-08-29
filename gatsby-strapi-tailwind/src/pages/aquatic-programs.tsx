@@ -7,7 +7,7 @@ const AquaticPrograms: React.FunctionComponent = () => {
     return (
         <div>
             <Navigation />
-            <Programs />
+            <Programs programCategory="aquatics" />
         </div>
     )
 }
