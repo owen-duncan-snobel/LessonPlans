@@ -3,7 +3,7 @@ import axios from 'axios';
 const fetchRegistration = async () => {
     const results = await axios({
         method: 'GET',
-        url: 'http://localhost:1337/registrations',
+        url: 'https://sheltered-thicket-91584.herokuapp.com/registrations',
     })
         .catch(err => {
             console.log(err);
