@@ -9,45 +9,49 @@ module.exports = {
     description: `Gatsby starter styled with Tailwind`,
     author: `@taylorbryant`,
   },
+
   plugins: [
-    `gatsby-plugin-eslint`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-typescript`,
+    `gatsby-plugin-postcss`,
     `gatsby-plugin-typescript-checker`,
+    {
+      resolve: "gatsby-plugin-purgecss",
+      options: {
+        tailwind: true,
+        purgeOnly: ["src/css/index.css"],
+      },
+    },
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `gatsby-starter-tailwind`,
+        name: `gatsby-starter-default`,
         short_name: `starter`,
         start_url: `/`,
-        background_color: fullConfig.theme.colors.white,
-        theme_color: fullConfig.theme.colors.teal["400"],
+        background_color: `#663399`,
+        theme_color: `#663399`,
         display: `minimal-ui`,
       },
     },
     {
-      resolve: `gatsby-plugin-postcss`,
+      resolve: "gatsby-plugin-eslint",
       options: {
-        postCssPlugins: [
-          require(`tailwindcss`)(tailwindConfig),
-          require(`autoprefixer`),
-          ...(process.env.NODE_ENV === `production`
-            ? [require(`cssnano`)]
-            : []),
-        ],
+        test: /\.ts$|\.tsx$/,
+        exclude: /(node_modules|.cache|public)/,
+        stages: ["develop", "build-javascript"],
+        options: {
+          emitWarning: true,
+          failOnError: false,
+        },
       },
     },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `images`,
-        path: `${__dirname}/src/images`,
-      },
-    },
+
     {
       resolve: 'gatsby-source-strapi',
       options: {
-        apiURL: 'http://localhost:1337',
+        apiURL: process.env.DEPLOY_URL ? 'https://sheltered-thicket-91584.herokuapp.com' : 'http://localhost:1337',
         contentTypes: [ // List of the Content Types you want to be able to request from Gatsby.
           'user',
           'registrations',
