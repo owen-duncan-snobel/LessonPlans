@@ -15,7 +15,7 @@
       "unique": true
     },
     "description": {
-      "type": "string",
+      "type": "text",
       "required": true
     },
     "registrations": {

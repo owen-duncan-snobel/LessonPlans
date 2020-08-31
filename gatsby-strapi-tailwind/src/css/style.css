@@ -1,5 +1,6 @@
-/*! purgecss start ignore */
 @tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 html {
     @apply bg-gray-100;
@@ -8,7 +9,3 @@ html {
 .text-7xl {
     font-size: 5rem;
 }
-
-@tailwind components;
-/*! purgecss end ignore */
-@tailwind utilities;
