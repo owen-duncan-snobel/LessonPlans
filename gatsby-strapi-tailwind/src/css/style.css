@@ -5,6 +5,10 @@ html {
     @apply bg-gray-100;
 }
 
+.text-7xl {
+    font-size: 5rem;
+}
+
 @tailwind components;
 /*! purgecss end ignore */
 @tailwind utilities;
