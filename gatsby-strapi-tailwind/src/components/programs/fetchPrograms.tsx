@@ -12,6 +12,7 @@ const useProgramData = () => {
                 id
                 programName
                 description
+                slug
                 created_at
                 updated_at
                 category {

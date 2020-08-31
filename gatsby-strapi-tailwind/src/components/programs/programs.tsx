@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import ProgramsLayout from './programsLayout';
+import ProgramsLayout from './templates/programsLayout';
 import useProgramData from './fetchPrograms';
 
 interface ProgramsData extends Array<Program> { }
@@ -9,6 +9,7 @@ interface Program {
         id: number,
         programName: string,
         description: string,
+        slug: string
         created_at: string,
         updated_at: string,
         category: {
