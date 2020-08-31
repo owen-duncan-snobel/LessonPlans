@@ -32,8 +32,7 @@ const Programs: React.FunctionComponent<{ programCategory: string }> = ({ progra
      */
     const category = programs.filter(program => program.node.category.category === programCategory);
     return (
-        <div className='flex flex-wrap justify-center  w-screen'>
-
+        <div className='flex flex-wrap justify-center'>
             {
                 category.map(program => {
                     return (
