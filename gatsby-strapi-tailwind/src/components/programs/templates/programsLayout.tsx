@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'gatsby';
+
 interface Data {
     id: number,
     programName: string,
@@ -13,12 +15,18 @@ interface Data {
 }
 const ProgramsLayout: React.FunctionComponent<{ data: Data }> = ({ data }) => {
     return (
-        <div className='bg-red-500 m-2 w-1/4 p-4'>
+        <div className='sm:w-1/4 bg-red-500 m-2 p-4'>
             <p className='font-extrabold text-3xl text-center pb-3'>{data.programName}</p>
-            <p className='text-sm align-bottom relative inset-x-0 bottom-0'>{data.description.split(' ', 30).join(' ') + '...'}
-                <a href={'/' + data.slug} className='underline'> read more</a>
-            </p>
-        </div>
+            <div className='break-words pt'>
+                {data.description.split(' ', 30).join(' ') + '...'}
+
+                <div className='flex w-full justify-end pt-2'>
+                    <button className=' bg-indigo-700 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded'>
+                        <Link to={'/' + data.slug}> Read More </Link>
+                    </button>
+                </div>
+            </div>
+        </div >
     )
 }
 export default ProgramsLayout;

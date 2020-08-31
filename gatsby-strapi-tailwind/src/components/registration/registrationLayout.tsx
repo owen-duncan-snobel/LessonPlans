@@ -48,7 +48,7 @@ const RegistrationProgram: React.FunctionComponent<{ data: ProgramRegistration[]
             <div className={(toggleProgram ? 'block' : 'hidden')} >
                 <table className='table-auto w-full mt-2'>
                     <thead>
-                        <tr className='bg-gray-200'>
+                        <tr className='bg-indigo-700 text-gray-100'>
                             <th>Course</th>
                             <th>Barcode</th>
                             <th>Times</th>
