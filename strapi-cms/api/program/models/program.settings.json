@@ -19,13 +19,18 @@
       "required": true
     },
     "registrations": {
-      "via": "program",
-      "collection": "registration"
+      "collection": "registration",
+      "via": "program"
     },
     "category": {
       "type": "component",
       "repeatable": false,
       "component": "category.category"
+    },
+    "slug": {
+      "type": "string",
+      "required": false,
+      "unique": false
     }
   }
 }
